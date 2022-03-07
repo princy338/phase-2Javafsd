@@ -1,45 +1,23 @@
 package com.product;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.Properties;
+
 public class Retrieveproduct {
-	
-	private int id;
-	private String pname;
-	private String ptype;
-	private int pprice;
-	
-	public Retrieveproduct() {}
 
-	public int getId() {
-		return id;
+	public static Connection getConnection(Properties prop)
+	{
+		Connection con = null;
+		try
+		{
+			Class.forName(prop.getProperty("driver"));
+			con = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("username"), prop.getProperty("password"));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return con;
 	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getPname() {
-		return pname;
-	}
-
-	public void setPname(String pname) {
-		this.pname = pname;
-	}
-
-	public String getPtype() {
-		return ptype;
-	}
-
-	public void setPtype(String ptype) {
-		this.ptype = ptype;
-	}
-
-	public int getPprice() {
-		return pprice;
-	}
-
-	public void setPprice(int pprice) {
-		this.pprice = pprice;
-	}
-
-
 }
